@@ -1,0 +1,36 @@
+<%- include('header'); -%>
+
+
+<div class="box" id="heading">
+
+    <h1> <%= listTitle  %> </h1>
+</div>
+
+<div class="box">
+
+    <% newListItems.forEach(newListItem => { %>
+    <form action="/delete" method="post">
+
+        <div class="item">
+
+            <!-- onChange="this.form.submit() (to submit a checked radio. Then, add name and value to access the checked item.) -->
+            <input type="checkbox" name="checkbox" value="<%=newListItem._id%>" onChange="this.form.submit()">
+            <p> <%= newListItem.name %> </p>
+        </div>
+        <input type="hidden" name="listName" value=" <%= listTitle %> ">
+    </form>
+    <% });%>
+
+
+    <!-- -------------------wrong>
+    <!-- <form class="item" action="%= route %>" method="post"> -->
+
+    <form class="item" action="/" method="post">
+
+        <input type="text" name="newItem" placeholder="Next Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle%>">+</button>
+    </form>
+</div>
+
+
+<%- include('footer'); -%>
